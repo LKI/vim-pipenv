@@ -59,6 +59,10 @@ function! pipenv#activate_venv(venv_name)
     let g:pipenv_activated = 1
     let g:pipenv_notify = 1
     let g:pipenv_name = g:venv_name
+    if g:lsp_loaded && g:pipenv_lsp_server_name
+        call lsp#stop_server(g:pipenv_lsp_server_name)
+        call lsp#activate()
+    endif
 endfunction
 
 function! pipenv#activate(...)
@@ -67,13 +71,13 @@ function! pipenv#activate(...)
         echoerr "vim-virtualenv not found, pipenv venv activation disabled"
         return
     endif
-    if g:pipenv_activated == 0 || force
+    if g:pipenv_activated == 0
         " No pipenv yet: try to load one from the current file
         let l:venv_name = pipenv#venv_name()
         if v:shell_error == 0
             call pipenv#activate_venv(l:venv_name)
         endif
-    elseif g:pipenv_auto_switch == 1
+    elseif g:pipenv_auto_switch == 1 || force
         " Already a pipenv active, check if still the same
         let l:venv_name = pipenv#venv_name()
         if v:shell_error == 0 && l:venv_name != g:venv_name

@@ -24,6 +24,10 @@ endif
 if !exists("g:pipenv_notify_when_activate")
     let g:pipenv_notify_when_activate = 0
 endif
+" default: sync pyls(vim-lsp) when activate
+if !exists("g:pipenv_lsp_server_name")
+    let g:pipenv_lsp_server_name = "pyls"
+endif
 
 command! -bar -nargs=? -complete=custom,s:CompletePipenv Pipenv :call pipenv#command(<q-args>)
 command! -bar -nargs=? -complete=custom,s:CompletePipenv Pvv :call pipenv#command(<q-args>)

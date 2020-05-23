@@ -37,4 +37,9 @@ g:pipenv_notify_when_activate                       *g:pipenv_notify_when_activa
     If set to 1, a message will echo every time activate a venv.
     Default value is 0.
 
+g:pipenv_lsp_server_name                            g:pipenv_lsp_server_name
+    If set, pipenv-vim will sync lsp server status when activate venv.
+    Currently only supports <vim-lsp>(https://github.com/prabirshrestha/vim-lsp/)
+    Default value is 'pyls', set '' to disable.
+
 vim:tw=78:et:ft=help:norl:
