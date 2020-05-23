@@ -31,7 +31,7 @@ g:pipenv_auto_activate                              *g:pipenv_auto_activate*
 g:pipenv_auto_switch                                *g:pipenv_auto_switch*
     If set to 1, an attempt will be made automatically switch venvs
     when opening a new file.
-    Default value is 1.
+    Default value is 0.
 
 g:pipenv_notify_when_activate                       *g:pipenv_notify_when_activate*
     If set to 1, a message will echo every time activate a venv.

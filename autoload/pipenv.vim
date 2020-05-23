@@ -38,19 +38,27 @@ function! pipenv#notify(...)
         return
     endif
     if g:pipenv_notify == 1 && g:pipenv_notify_when_activate == 1
-        let clean_text = substitute(g:pipenv_path, '[[:cntrl:]]', '', 'g')
+        let clean_text = substitute(g:pipenv_name, '[[:cntrl:]]', '', 'g')
         echo "vim-pipenv | Activated venv: " . clean_text
     endif
     let g:pipenv_notify = 0
 endfunction
 
-function! pipenv#venv(...)
+function! pipenv#venv_name(...)
   let l:shellslash = &shellslash
   set shellslash
-  let l:cmd = 'sh -c "PIPENV_IGNORE_VIRTUALENVS=1 PIPENV_VERBOSITY=-1 cd ' . expand('%:p:h') . ' && pipenv --venv"'
-  let l:venv_path = system(l:cmd)
+  let l:cmd = 'sh -c "export PIPENV_IGNORE_VIRTUALENVS=1 PIPENV_VERBOSITY=-1; cd ' . expand('%:p:h') . ' && pipenv --venv"'
+  let l:venv_name = system(l:cmd)
   let &shellslash = l:shellslash
-  return l:venv_path
+  return l:venv_name
+endfunction
+
+function! pipenv#activate_venv(venv_name)
+    let g:venv_name = fnamemodify(a:venv_name, ':p:t:gs?[[:cntrl:]]??')
+    call virtualenv#activate(g:venv_name)
+    let g:pipenv_activated = 1
+    let g:pipenv_notify = 1
+    let g:pipenv_name = g:venv_name
 endfunction
 
 function! pipenv#activate(...)
@@ -59,32 +67,17 @@ function! pipenv#activate(...)
         echoerr "vim-virtualenv not found, pipenv venv activation disabled"
         return
     endif
-    if g:pipenv_activated == 0
+    if g:pipenv_activated == 0 || force
         " No pipenv yet: try to load one from the current file
-        let g:pipenv_activated = 1
-        let l:venv_path = pipenv#venv()
+        let l:venv_name = pipenv#venv_name()
         if v:shell_error == 0
-            let g:venv_name = fnamemodify(l:venv_path, ':p:t:gs?[[:cntrl:]]??')
-            call virtualenv#activate(g:venv_name)
-            let g:pipenv_activated = 1
-            let g:pipenv_notify = 1
-            let g:pipenv_path = l:venv_path
+            call pipenv#activate_venv(l:venv_name)
         endif
-    else
+    elseif g:pipenv_auto_switch == 1
         " Already a pipenv active, check if still the same
-        if g:pipenv_auto_switch == 0 && force == 0
-            return
-        endif
-        let l:venv_path = pipenv#venv()
-        if v:shell_error == 0
-            let l:venv_name = fnamemodify(l:venv_path, ':p:t:gs?[[:cntrl:]]??')
-            if l:venv_name != g:venv_name
-                " Other venv detected, switch!
-                let g:venv_name = l:venv_name
-                call virtualenv#activate(g:venv_name)
-                let g:pipenv_notify = 1
-                let g:pipenv_path = l:venv_path
-            endif
+        let l:venv_name = pipenv#venv_name()
+        if v:shell_error == 0 && l:venv_name != g:venv_name
+            call pipenv#activate_venv(l:venv_name)
         endif
     endif
 endfunction
