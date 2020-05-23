@@ -1,4 +1,4 @@
-" pipenv-vim core commands
+" vim-pipenv core commands
 " Version: 0.3.2
 
 function! pipenv#command(...)
