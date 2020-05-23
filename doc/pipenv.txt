@@ -25,10 +25,16 @@ COMMANDS                                            *pipenv-commands*
 CONFIGURATION                                       *pipenv-configuration*
 
 g:pipenv_auto_activate                              *g:pipenv_auto_activate*
-    If set to 1 (default), an attempt will be made to activate the pipenv venv.
+    If set to 1, an attempt will be made to activate the pipenv venv.
+    Default value is 1.
 
 g:pipenv_auto_switch                                *g:pipenv_auto_switch*
-    If set to 1 (default), an attempt will be made automatically switch venvs
+    If set to 1, an attempt will be made automatically switch venvs
     when opening a new file.
+    Default value is 1.
+
+g:pipenv_notify_when_activate                       *g:pipenv_notify_when_activate*
+    If set to 1, a message will echo every time activate a venv.
+    Default value is 0.
 
 vim:tw=78:et:ft=help:norl:

@@ -37,11 +37,11 @@ function! pipenv#notify(...)
     if !exists("g:virtualenv_loaded")
         return
     endif
-    if g:pipenv_notify == 1
+    if g:pipenv_notify == 1 && g:pipenv_notify_when_activate == 1
         let clean_text = substitute(g:pipenv_path, '[[:cntrl:]]', '', 'g')
-        echomsg "vim-pipenv | Activated venv: " . clean_text
-        let g:pipenv_notify = 0
+        echo "vim-pipenv | Activated venv: " . clean_text
     endif
+    let g:pipenv_notify = 0
 endfunction
 
 function! pipenv#venv(...)

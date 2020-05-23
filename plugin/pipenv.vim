@@ -1,9 +1,8 @@
 if exists("g:pipenv_loaded")
     finish
 endif
-
-
 let g:pipenv_loaded = 1
+
 let g:pipenv_activated = 0
 let g:pipenv_notify = 0
 let s:save_cpo = &cpo
@@ -19,6 +18,10 @@ endif
 
 if !exists("g:pipenv_auto_switch")
     let g:pipenv_auto_switch = 1
+endif
+
+if !exists("g:pipenv_notify_when_activate")
+    let g:pipenv_notify_when_activate = 0
 endif
 
 command! -bar -nargs=? -complete=custom,s:CompletePipenv Pipenv :call pipenv#command(<q-args>)
