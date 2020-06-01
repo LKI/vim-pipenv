@@ -7,8 +7,8 @@ INTRODUCTION                                        *pipenv* *pipenv.vim*
 
 The pipenv plugin allows you to manage pipenv from within a Vim session,
 and will activate the project's venv for you.
-In order to do this, vim-pipenv uses plytophogy's <vim-virtualenv>
-(https://github.com/plytophogy/vim-virtualenv) plugin (which you should
+In order to do this, vim-pipenv uses jmcantrell's <vim-virtualenv>
+(https://github.com/jmcantrell/vim-virtualenv) plugin (which you should
 have installed).
 
 COMMANDS                                            *pipenv-commands*
