@@ -12,7 +12,7 @@ if !has('python3') && !has('python')
   finish
 endif
 
-" default: activate pipenv
+" default: activate pipenv automatically
 if !exists("g:pipenv_auto_activate")
   let g:pipenv_auto_activate = 1
 endif

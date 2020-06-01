@@ -15,11 +15,7 @@ function! pipenv#command(...)
       call pipenv#activate(1)
       return
     endif
-    echo "Executing pipenv " . action . " ..."
-    let output=systemlist("pipenv " . action)
-    for line in output
-      echom line
-    endfor
+    execute "silent term pipenv " . action
   else
     " If no command, activate pipenv of currently selected buffer
     call pipenv#activate(1)

@@ -9,6 +9,9 @@ Vim + Pipenv, with [virtualenv][vim-virtualenv]/[lsp][vim-lsp] support.
 - [x] Auto switch pipenv for different file
 - [x] Auto reload lsp server
 - [x] Provide in-vim `Pipenv` command
+- [ ] Auto change directory to Pipfile root folder
+- [ ] Cache pipenv paths (for performance)
+- [ ] Test on windows/macos/linux
 
 
 ## Installing
