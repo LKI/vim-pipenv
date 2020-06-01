@@ -1,7 +1,9 @@
 " vim-pipenv core commands
-" Version: 0.3.2
 
 function! pipenv#command(...)
+  " Run pipenv sub-command, with two custom sub-command
+  "  - pipenv enable: enable current venv
+  "  - pipenv disable: disable current venv
   let action = a:0 > 0 ? a:1 : ''
   if len(action) != 0
     if action == 'disable'
@@ -27,10 +29,6 @@ endfunction
 function! pipenv#enable_auto()
   autocmd filetype python call pipenv#activate()
   autocmd BufWinEnter *.py call pipenv#notify()
-endfunction
-
-function! pipenv#debug(Wow)
-  echomsg "vim-pipenv | event: " . a:Wow
 endfunction
 
 function! pipenv#notify(...)

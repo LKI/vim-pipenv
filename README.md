@@ -1,62 +1,55 @@
-# pipenv.vim
+# vim-pipenv
 
-> Forked from [PieterjanMontens](https://github.com/PieterjanMontens/vim-pipenv)
->
-> Seems origin repo is out of maintainance.
-
-Inspired by and using [vim-virtualenv](https://github.com/plytophogy/vim-virtualenv),
-_vim-pipenv_ detects the venv of the pipenv projects you open and activates the corresponding venv.
-
-_vim-pipenv_ will auto-detect the pipenv of any python file you open,
-and if auto-switching is enabled,
-will switch to the corresponding venv (see `:help pipenv` for options).
-
-You can also issue commands to pipenv with the `:Pipenv` command,
-of which the output will be displayed once the command is done
-(which.. can take some time. Working on it.).
+Vim + Pipenv, with [virtualenv][vim-virtualenv]/[lsp][vim-lsp] support.
 
 
-## Usage Examples ##
+## Features
 
-Get help
-
-    :help pipenv
-
-See pipenv graph
-
-    :Pipenv graph
-
-Install & lock `pyyaml` in dev packages
-(`:Pvv` is provided as alias for `:Pipenv`)
-
-    :Pvv install pyyaml --dev
-
-Activate Pipenv venv for current file
-
-    :Pipenv
-
-Use \<tab\> to switch between available commands.
+- [x] Auto activate pipenv in vim
+- [x] Auto switch pipenv for different file
+- [x] Auto reload lsp server
+- [x] Provide in-vim `Pipenv` command
 
 
-## Installing ##
-vim-pipenv depends on the excellent [vim-virtualenv](https://github.com/plytophogy/vim-virtualenv):
-make sure you install it too (or just follow guidelines bellow to install both at the same time)
+## Installing
 
-### [Pathogen](https://github.com/tpope/vim-pathogen) ###
+- [vim-plug][vim-plug]
+```viml
+Plug 'plytophogy/vim-virtualenv'
+Plug 'PieterjanMontens/vim-pipenv'
+```
+
+- [vundle][vundle]
+```viml
+Plugin 'plytophogy/vim-virtualenv'
+Plugin 'PieterjanMontens/vim-pipenv'
+```
+
+- [pathogen][pathogen]
 ```shell
 mkdir -p ~/.vim/bundle && cd ~/.vim/bundle
 git clone https://github.com/plytophogy/vim-virtualenv
 git clone https://github.com/PieterjanMontens/vim-pipenv
 ```
 
-### [Vundle](https://github.com/VundleVim/Vundle.vim) ###
-```viml
-Plugin 'plytophogy/vim-virtualenv'
-Plugin 'PieterjanMontens/vim-pipenv'
-```
 
-### [Vim-plug](https://github.com/junegunn/vim-plug) ###
-```viml
-Plug 'plytophogy/vim-virtualenv'
-Plug 'PieterjanMontens/vim-pipenv'
-```
+## Tell Me More
+
+Originally forked from [PieterjanMontens/pipenv][old-vim-pipenv],
+which is inspired by and using [vim-virtualenv][vim-virtualenv].
+[vim-pipenv][vim-pipenv] detects the venv of pipenv projects, and activates it.
+See `:help pipenv` for more details.
+
+
+## License
+
+License: Same terms as Vim itself (see `:help license`)
+
+
+[vim-pipenv]: https://github.com/LKI/vim-pipenv
+[old-vim-pipenv]: https://github.com/PieterjanMontens/vim-pipenv
+[pathogen]: https://github.com/tpope/vim-pathogen
+[vim-lsp]: https://github.com/prabirshrestha/vim-lsp
+[vim-plug]: https://github.com/junegunn/vim-plug
+[vim-virtualenv]: https://github.com/plytophogy/vim-virtualenv
+[vundle]: https://github.com/VundleVim/Vundle.vim
