@@ -15,20 +15,20 @@ Vim + Pipenv, with [virtualenv][vim-virtualenv]/[lsp][vim-lsp] support.
 
 - [vim-plug][vim-plug]
 ```viml
-Plug 'plytophogy/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv'
 Plug 'PieterjanMontens/vim-pipenv'
 ```
 
 - [vundle][vundle]
 ```viml
-Plugin 'plytophogy/vim-virtualenv'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'PieterjanMontens/vim-pipenv'
 ```
 
 - [pathogen][pathogen]
 ```shell
 mkdir -p ~/.vim/bundle && cd ~/.vim/bundle
-git clone https://github.com/plytophogy/vim-virtualenv
+git clone https://github.com/jmcantrell/vim-virtualenv
 git clone https://github.com/PieterjanMontens/vim-pipenv
 ```
 
@@ -51,5 +51,5 @@ License: Same terms as Vim itself (see `:help license`)
 [pathogen]: https://github.com/tpope/vim-pathogen
 [vim-lsp]: https://github.com/prabirshrestha/vim-lsp
 [vim-plug]: https://github.com/junegunn/vim-plug
-[vim-virtualenv]: https://github.com/plytophogy/vim-virtualenv
+[vim-virtualenv]: https://github.com/jmcantrell/vim-virtualenv
 [vundle]: https://github.com/VundleVim/Vundle.vim
