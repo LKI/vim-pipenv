@@ -53,9 +53,11 @@ function! pipenv#activate_venv(venv_name)
   let g:pipenv_activated = 1
   let g:pipenv_notify = 1
   let g:pipenv_name = g:venv_name
-  if g:lsp_loaded == 1 && g:pipenv_lsp_server_name != ''
-    call lsp#stop_server(g:pipenv_lsp_server_name)
-    call lsp#activate()
+  if exists("g:lsp_loaded") && exists("g:pipenv_lsp_server_name")
+    if g:lsp_loaded == 1 && g:pipenv_lsp_server_name != ''
+      call lsp#stop_server(g:pipenv_lsp_server_name)
+      call lsp#activate()
+    endif
   endif
 endfunction
 
